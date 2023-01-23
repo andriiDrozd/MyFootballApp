@@ -77,7 +77,7 @@ public class Repository {
 
     public MutableLiveData<List<Datum>> getMutableLiveDataTeamList() {
 
-        Call<FootballInfo> call = footballService.getFootballInfo(Region.GERMANY.getId(), "ba31f060-95a7-11ed-a8cc-1be03dcda28c4");
+        Call<FootballInfo> call = footballService.getFootballInfo(Region.GERMANY.getId(), "ba31f060-95a7-11ed-a8cc-1be03dcda28c");
 
         call.enqueue(new Callback<FootballInfo>() {
             @Override
