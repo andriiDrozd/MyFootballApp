@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="team"
+            type="com.example.footballapp.model.Datum" />
+
+        <variable
+            name="country"
+            type="com.example.footballapp.model.Country" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#529DBF"
+        tools:cardCornerRadius="20dp"
+        tools:cardElevation="10dp"
+        tools:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/logoImageView"
+                profileImage="@{imageUrl}"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:padding="4dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/teamNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logoImageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="7dp"
+                android:text="@{team.name}"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/countryTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/teamNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="7dp"
+                android:text="@{country.name}"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

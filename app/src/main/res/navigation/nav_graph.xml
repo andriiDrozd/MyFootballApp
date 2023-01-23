@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/teamListScreenFragment">
+
+    <fragment
+        android:id="@+id/teamListScreenFragment"
+        android:name="com.example.footballapp.teamList.TeamListScreenFragment"
+        android:label="TeamListScreenFragment" >
+        <action
+            android:id="@+id/action_teamListScreenFragment_to_teamInfoFragment"
+            app:destination="@id/teamInfoFragment" />
+        <action
+            android:id="@+id/action_teamListScreenFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teamInfoFragment"
+        android:name="com.example.footballapp.teamInfo.TeamInfoFragment"
+        android:label="TeamInfoFragment" >
+        <argument
+            android:name="teamId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="com.example.footballapp.error.ErrorFragment"
+        android:label="ErrorFragment" >
+        <argument
+            android:name="errorMessage"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
