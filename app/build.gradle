@@ -18,7 +18,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "API_KEY", '"ba31f060-95a7-11ed-a8cc-1be03dcda28c"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,7 +29,12 @@ android {
 
 
     buildTypes {
+//        debug{
+//            buildConfigField "String", "API_KEY", "ba31f060-95a7-11ed-a8cc-1be03dcda28c"
+//        }
+
         release {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

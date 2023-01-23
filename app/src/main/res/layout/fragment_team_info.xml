@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="team"
             type="com.example.footballapp.model.Datum" />
@@ -17,26 +16,33 @@
         <variable
             name="imageUrl"
             type="String" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#79DA7D"
+        android:background="#2033A6"
         tools:context=".teamInfo.TeamInfoFragment">
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#529DBF"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:cardCornerRadius="50dp"
-            tools:cardElevation="20dp"
-            android:padding="20dp"
+            tools:cardElevation="60dp"
             tools:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/silver_card_back" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,6 +102,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

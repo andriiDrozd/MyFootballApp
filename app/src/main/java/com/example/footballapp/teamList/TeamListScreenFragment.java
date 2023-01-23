@@ -24,6 +24,8 @@ import com.example.footballapp.databinding.FragmentTemListBinding;
 import com.example.footballapp.di.BaseApplication;
 
 import com.example.footballapp.model.Datum;
+import com.example.footballapp.util.Common;
+import com.example.footballapp.util.NetworkCallback;
 import com.example.footballapp.util.RecyclerViewClickInterface;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,7 +35,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 
-public class TeamListScreenFragment extends Fragment implements RecyclerViewClickInterface {
+public class TeamListScreenFragment extends Fragment implements RecyclerViewClickInterface
+//        , NetworkCallback
+{
     @Inject
     @Named("TeamListScreenFragment")
     ViewModelProvider.Factory viewModelFactory;
@@ -61,18 +65,17 @@ public class TeamListScreenFragment extends Fragment implements RecyclerViewClic
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        teamListScreenViewModel.getAllTeamsDatum().observe(getViewLifecycleOwner(), data -> fillRecyclerView(data));
 
         NavController navController = Navigation.findNavController(view);
+        if(Common.isInternetConnected(requireContext())) {
+            teamListScreenViewModel.getAllTeamsDatum().observe(getViewLifecycleOwner(), data -> fillRecyclerView(data));
 
-        teamListScreenViewModel.getError().observe(getViewLifecycleOwner(), s -> {
-            navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToErrorFragment(s));
-        });
-        if(teamListScreenViewModel.getError().equals("")){
-            Log.e("result", "emptyList");
-        }
-        if(teamListScreenViewModel.getError()==null){
-            Log.e("result", "list null");
+            teamListScreenViewModel.getError().observe(getViewLifecycleOwner(), (String s) -> {
+                Log.e("result", "String s=" + s);
+                navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToErrorFragment(s));
+            });
+        }else{
+            navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToErrorFragment("No Internet connection"));
         }
     }
 
@@ -89,4 +92,14 @@ public class TeamListScreenFragment extends Fragment implements RecyclerViewClic
         NavController navController = Navigation.findNavController(view);
         navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToTeamInfoFragment(teamId));
     }
+
+//    @Override
+//    public void onConnect() {
+//        onCreateView()
+//    }
+//
+//    @Override
+//    public void onDisconnect() {
+//
+//    }
 }

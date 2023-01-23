@@ -11,9 +11,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-
-        daggerComponent =
-                DaggerDaggerComponent.builder()
+        daggerComponent = DaggerDaggerComponent.builder()
                 .retroModule(new RetroModule())
                 .build();
     }

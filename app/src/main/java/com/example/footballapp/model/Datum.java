@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.gson.annotations.Expose;
+import com.example.footballapp.R;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
@@ -17,21 +17,24 @@ public class Datum {
 
     @SerializedName("team_id")
     private Integer teamId;
-
     @SerializedName("name")
     private String name;
-
     @SerializedName("short_code")
     private String shortCode;
-
     @SerializedName("common_name")
     private Object commonName;
-
     @SerializedName("logo")
     private String logo;
-
     @SerializedName("country")
     private Country country;
+
+    @BindingAdapter("profileImage")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl).apply(new RequestOptions().circleCrop())
+                .placeholder(R.drawable.ic_baseline_autorenew_24)
+                .into(view);
+    }
 
     public Integer getTeamId() {
         return teamId;
@@ -81,13 +84,6 @@ public class Datum {
         this.country = country;
     }
 
-    @BindingAdapter("profileImage")
-    public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext())
-                .load(imageUrl).apply(new RequestOptions().circleCrop())
-                .into(view);
-    }
-
     @Override
     public String toString() {
         return "Datum{" +
@@ -113,7 +109,7 @@ public class Datum {
         return Objects.hash(teamId, name, shortCode, commonName, logo, country);
     }
 
-    public static DiffUtil.ItemCallback<Datum> itemCallback=new DiffUtil.ItemCallback<Datum>() {
+    public static DiffUtil.ItemCallback<Datum> itemCallback = new DiffUtil.ItemCallback<Datum>() {
         @Override
         public boolean areItemsTheSame(@NonNull Datum oldItem, @NonNull Datum newItem) {
             return oldItem.getTeamId().equals(newItem.teamId);

@@ -1,13 +1,10 @@
 package com.example.footballapp.model;
 
 
-import android.os.Parcelable;
-
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Country  {
+public class Country {
 
     @SerializedName("country_id")
     private Integer countryId;

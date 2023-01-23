@@ -21,10 +21,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#529DBF"
         tools:cardCornerRadius="20dp"
         tools:cardElevation="10dp"
         tools:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/silver_card_back"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -48,7 +51,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="7dp"
                 android:text="@{team.name}"
-                android:textSize="15sp"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -59,7 +63,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="7dp"
                 android:text="@{country.name}"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:textStyle="italic" />
 
         </RelativeLayout>

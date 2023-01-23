@@ -13,6 +13,11 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.footballapp.R;
 
 public class NetworkChangeListener extends BroadcastReceiver {
+NetworkCallback networkCallback;
+
+    public NetworkChangeListener(NetworkCallback networkCallback) {
+        this.networkCallback = networkCallback;
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -33,13 +38,13 @@ public class NetworkChangeListener extends BroadcastReceiver {
                 public void onClick(View view) {
                     dialog.dismiss();
                     onReceive(context,intent);
+                    if(Common.isInternetConnected(context)){
+                        networkCallback.onConnect();
+                    }else {
+                        networkCallback.onDisconnect();
+                    }
                 }
             });
         }
     }
-}
-
-interface NetworkCallback{
-    void onConnect();
-    void onDisconnect();
 }

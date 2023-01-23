@@ -23,6 +23,9 @@
         <argument
             android:name="teamId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_teamInfoFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
     </fragment>
     <fragment
         android:id="@+id/errorFragment"
@@ -31,6 +34,9 @@
         <argument
             android:name="errorMessage"
             app:argType="string" />
+        <action
+            android:id="@+id/action_errorFragment_to_teamListScreenFragment"
+            app:destination="@id/teamListScreenFragment" />
     </fragment>
 
 </navigation>

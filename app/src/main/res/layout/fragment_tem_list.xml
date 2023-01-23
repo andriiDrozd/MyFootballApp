@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".teamList.TeamListScreenFragment"
-    android:background="#79DA7D">
+    android:background="#2033A6">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
