@@ -9,14 +9,14 @@ public class BaseApplication extends Application {
     private DaggerComponent daggerComponent;
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         daggerComponent = DaggerDaggerComponent.builder()
                 .retroModule(new RetroModule())
                 .build();
     }
 
-    public DaggerComponent getDaggerComponent(){
+    public DaggerComponent getDaggerComponent() {
         return daggerComponent;
     }
 }

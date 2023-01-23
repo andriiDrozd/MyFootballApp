@@ -1,7 +1,7 @@
 package com.example.footballapp.repositories;
 
 import android.util.Log;
-import com.example.footballapp.BuildConfig;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -42,8 +42,8 @@ public class Repository {
         call.enqueue(new Callback<FootballTeamInfo>() {
 
             @Override
-            public void onResponse(Call<FootballTeamInfo> call,
-                                   Response<FootballTeamInfo> response) {
+            public void onResponse(@NonNull Call<FootballTeamInfo> call,
+                                   @NonNull Response<FootballTeamInfo> response) {
                 if (response.isSuccessful()) {
                     Log.e("result", "Error from success" + response.code());
                     FootballTeamInfo footballInfo = response.body();
@@ -71,7 +71,7 @@ public class Repository {
 
         call.enqueue(new Callback<FootballInfo>() {
             @Override
-            public void onResponse(Call<FootballInfo> call, Response<FootballInfo> response) {
+            public void onResponse(@NonNull Call<FootballInfo> call, @NonNull Response<FootballInfo> response) {
                 if (response.isSuccessful()) {
                     FootballInfo footballInfo = response.body();
                     if (footballInfo != null && footballInfo.getData() != null) {
@@ -84,7 +84,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<FootballInfo> call, Throwable t) {
+            public void onFailure(@NonNull Call<FootballInfo> call, @NonNull Throwable t) {
                 errorMessage.postValue("Unknown Error");
                 Log.e("error", t.toString());
             }

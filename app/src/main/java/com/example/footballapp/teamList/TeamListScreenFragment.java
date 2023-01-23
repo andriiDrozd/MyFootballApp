@@ -5,12 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -18,16 +16,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.footballapp.MainActivity;
 import com.example.footballapp.adapter.FootballInfoListAdapter;
 import com.example.footballapp.databinding.FragmentTemListBinding;
 import com.example.footballapp.di.BaseApplication;
-
 import com.example.footballapp.model.Datum;
 import com.example.footballapp.util.Common;
-import com.example.footballapp.util.NetworkCallback;
 import com.example.footballapp.util.RecyclerViewClickInterface;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -54,7 +48,7 @@ public class TeamListScreenFragment extends Fragment implements RecyclerViewClic
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentTemListBinding = FragmentTemListBinding.inflate(inflater);
-        ((BaseApplication) getActivity().getApplication()).getDaggerComponent()
+        ((BaseApplication) requireActivity().getApplication()).getDaggerComponent()
                 .inject(this);
         teamListScreenViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TeamListScreenViewModel.class);
@@ -67,20 +61,20 @@ public class TeamListScreenFragment extends Fragment implements RecyclerViewClic
         super.onViewCreated(view, savedInstanceState);
 
         NavController navController = Navigation.findNavController(view);
-        if(Common.isInternetConnected(requireContext())) {
+        if (Common.isInternetConnected(requireContext())) {
             teamListScreenViewModel.getAllTeamsDatum().observe(getViewLifecycleOwner(), data -> fillRecyclerView(data));
 
             teamListScreenViewModel.getError().observe(getViewLifecycleOwner(), (String s) -> {
                 Log.e("result", "String s=" + s);
                 navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToErrorFragment(s));
             });
-        }else{
+        } else {
             navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToErrorFragment("No Internet connection"));
         }
     }
 
     private void fillRecyclerView(List<Datum> datumArrayList) {
-        FootballInfoListAdapter adapter=new FootballInfoListAdapter(Datum.itemCallback,this);
+        FootballInfoListAdapter adapter = new FootballInfoListAdapter(Datum.itemCallback, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         fragmentTemListBinding.recyclerView.setLayoutManager(layoutManager);
         fragmentTemListBinding.recyclerView.setAdapter(adapter);
@@ -92,14 +86,4 @@ public class TeamListScreenFragment extends Fragment implements RecyclerViewClic
         NavController navController = Navigation.findNavController(view);
         navController.navigate(TeamListScreenFragmentDirections.actionTeamListScreenFragmentToTeamInfoFragment(teamId));
     }
-
-//    @Override
-//    public void onConnect() {
-//        onCreateView()
-//    }
-//
-//    @Override
-//    public void onDisconnect() {
-//
-//    }
 }

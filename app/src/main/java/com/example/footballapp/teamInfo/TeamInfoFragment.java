@@ -37,7 +37,7 @@ public class TeamInfoFragment extends Fragment {
         int teamId = TeamInfoFragmentArgs.fromBundle(getArguments()).getTeamId();
         teamInfoBinding = FragmentTeamInfoBinding.inflate(inflater);
 
-        ((BaseApplication) getActivity().getApplication()).getDaggerComponent()
+        ((BaseApplication) requireActivity().getApplication()).getDaggerComponent()
                 .inject(this);
 
         teamInfoViewModel = ViewModelProviders.of(this, viewModelFactory)
@@ -46,7 +46,6 @@ public class TeamInfoFragment extends Fragment {
         return teamInfoBinding.getRoot();
     }
 
-    // TODO: 1/22/2023 remove string
     private void getDatum(int teamId) {
         teamInfoViewModel.getTeamInfoDatum(teamId).observe(getViewLifecycleOwner(), datum -> fillView(datum));
     }

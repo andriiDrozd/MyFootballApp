@@ -11,21 +11,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetroModule {
-    private final static String BASE_URL="https://app.sportdataapi.com/";
+    private final static String BASE_URL = "https://app.sportdataapi.com/";
 
     @Singleton
     @Provides
-    public FootballService getFootballService(Retrofit retrofit){
+    public FootballService getFootballService(Retrofit retrofit) {
         return retrofit.create(FootballService.class);
     }
 
     @Singleton
     @Provides
-    public Retrofit provideRetrofitInstance(){
-        Retrofit retrofit = new Retrofit.Builder()
+    public Retrofit provideRetrofitInstance() {
+        return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        return retrofit;
     }
 }

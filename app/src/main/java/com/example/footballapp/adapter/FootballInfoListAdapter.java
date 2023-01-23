@@ -14,7 +14,6 @@ import com.example.footballapp.model.Datum;
 import com.example.footballapp.util.RecyclerViewClickInterface;
 
 
-
 public class FootballInfoListAdapter extends ListAdapter<Datum, FootballInfoListAdapter.FootballViewHolder> {
 
     private final RecyclerViewClickInterface recyclerViewClickInterface;
@@ -37,7 +36,7 @@ public class FootballInfoListAdapter extends ListAdapter<Datum, FootballInfoList
         holder.bind(item);
     }
 
-    class FootballViewHolder extends RecyclerView.ViewHolder{
+    class FootballViewHolder extends RecyclerView.ViewHolder {
 
         private final TeamItemBinding teamItemBinding;
 

@@ -23,7 +23,7 @@ public class TeamListScreenViewModel extends ViewModel {
         return repository.getMutableLiveDataTeamList();
     }
 
-    public LiveData<String> getError(){
+    public LiveData<String> getError() {
         return repository.getErrorMessage();
     }
 }

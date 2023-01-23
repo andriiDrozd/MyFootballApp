@@ -10,9 +10,9 @@ import javax.inject.Inject;
 
 public class TeamInfoViewModel extends ViewModel {
 
-     Repository repository;
+    Repository repository;
 
-     @Inject
+    @Inject
     public TeamInfoViewModel(Repository repository) {
         this.repository = repository;
     }
@@ -21,7 +21,8 @@ public class TeamInfoViewModel extends ViewModel {
     public LiveData<Datum> getTeamInfoDatum(int teamId) {
         return repository.getDatumLiveDataTeamInfo(teamId);
     }
-    public LiveData<String> getError(){
+
+    public LiveData<String> getError() {
         return repository.getErrorMessage();
     }
 }
